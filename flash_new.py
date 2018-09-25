@@ -111,10 +111,10 @@ FILE.write('keyPressed,wordSaid,timeStamp\n')
 #				FONTS SETUP				 #
 ##########################################
 R, G, B = 0, 128, 0 # text color (RGB-255)
-font = pygame.font.SysFont("comicsansms", 2*72)
-font2 = pygame.font.SysFont("comicsansms", 90)
+font = pygame.font.SysFont("comicsansms", 3*72)
+font2 = pygame.font.SysFont("comicsansms", 50)
 font3 = pygame.font.SysFont("comicsansms", 50)
-font4 = pygame.font.SysFont("comicsansms", 80)
+font4 = pygame.font.SysFont("comicsansms", 50)
 text = font.render("", True, (R, G, B))
 text2 = font.render("", True, (R, G, B))
 text3 = font3.render("", True, (R, G, B))

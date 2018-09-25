@@ -5,7 +5,7 @@ from functools import reduce
 from helpers import *
 
 VERBOSITY = 100
-PER_WORD_DURATION = None # ms
+PER_WORD_DURATION = 1000 # ms
 # Input CSV and the expected column names
 CSV = "outputs.csv"
 TIME_NAME = "timeStamp"
@@ -98,8 +98,8 @@ def make_start_end_df(df):
 			start = prev
 			end = row[TIME_NAME]
 			duration = end - start
-			if PER_WORD_DURATION == None:
-				PER_WORD_DURATION = nearest_1000(duration)
+			# if PER_WORD_DURATION == None:
+			# 	PER_WORD_DURATION = nearest_1000(duration)
 			repeats = nearest_1000(duration) // PER_WORD_DURATION
 			per_sample_time = int(duration / repeats) if repeats else 0
 			for _ in range(repeats - 1):
