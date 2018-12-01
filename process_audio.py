@@ -200,18 +200,18 @@ if __name__ == "__main__":
 		outputs[TIME_NAME] = outputs[TIME_NAME] - offset
 		outputs = outputs[outputs.timeStamp > 0]
 		outputs = make_start_end_df(outputs)
-		print(outputs)
+		print(outputs.head(160))
 		make_dirs(outputs, root=root)
 		# Prepare the audio for processing
 		dryrun = False
-		sample_rate = 8000
-		downsampled_path = timer(downsample, os.path.join(root, AUDIO_PATH), sample_rate)
+		#sample_rate = 8000
+		#downsampled_path = timer(downsample, os.path.join(root, AUDIO_PATH), sample_rate)
 		# Create jobs to split the audio
-		job_queue, num_jobs = timer(split_audio, outputs, downsampled_path, 8, root)
+		job_queue, num_jobs = timer(split_audio, outputs, root + AUDIO_PATH, 4, root) #dont need downsample
 		pool = make_pool(job_queue, num_jobs, num_threads=4, dryrun=dryrun)
 		# Run the audio jobs
 		timer(run_jobs, pool)
 		del_threads(pool)
 		# Delete temporary folders/files created in the process
-		cleanup([downsampled_path])
+		#cleanup([downsampled_path])
 		print("Done!")
